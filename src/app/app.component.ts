@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {BlogPost} from "./blog/BlogPost";
 
 //controls a patch of screen(presenter)
 @Component({
@@ -14,17 +15,9 @@ import { Component } from '@angular/core';
       (click)="onSelect(post)">
         <span class="badge">{{post.id}}</span> {{post.name}}
       </li>
-    </ul>
+    </ul>  
     
-    <div *ngIf="selectedPost">
-      <h2>{{selectedPost.name}} details!</h2>
-      <div><label>id: </label>{{selectedPost.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedPost.name" placeholder="name"/>
-      </div>
-    </div>
-     
+    <blog-detail [post]="selectedPost"></blog-detail>
     `,
   styles: [`
     .selected {
@@ -87,11 +80,7 @@ export class AppComponent  {
   }
 }
 
-export class BlogPost {
-  id: number;
-  name: string;
-  description: string;
-}
+
 
 const BLOG_POSTS: BlogPost[] = [
   {
