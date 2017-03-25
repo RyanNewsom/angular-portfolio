@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BlogPost} from "./blog/BlogPost";
-import {BlogService} from "./blog/blog.service"
+import {BlogPost} from "./BlogPost";
+import {BlogService} from "./blog.service"
 
 //controls a patch of screen(presenter)
 
