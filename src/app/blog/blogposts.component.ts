@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogPost} from "./BlogPost";
 import {BlogService} from "./blog.service"
+import {Router} from "@angular/router";
 
 //controls a patch of screen(presenter)
 
@@ -9,21 +10,7 @@ import {BlogService} from "./blog.service"
 @Component({
   selector: 'my-blogPosts',
   providers: [BlogService],
-  template: `
-     <h1>{{title}}</h1>
-     
-     <h2>My Blog Posts</h2>
-    <ul class="blogPosts">
-      
-      <li *ngFor="let post of blogPosts" 
-      [class.selected]="post === selectedPost"
-      (click)="onSelect(post)">
-        <span class="badge">{{post.id}}</span> {{post.name}}
-      </li>
-    </ul>  
-    
-    <blog-detail [post]="selectedPost"></blog-detail>
-    `,
+  templateUrl: './blogposts.component.html',
   styles: [`
     .selected {
       background-color: #CFD8DC !important;
@@ -76,7 +63,7 @@ import {BlogService} from "./blog.service"
 })
 
 export class BlogpostsComponent  implements OnInit {
-  constructor(private blogPostService: BlogService){ }
+  constructor(private blogPostService: BlogService, private router: Router,){ }
 
   title = 'Blog';
   blogPosts:  BlogPost[];
@@ -92,6 +79,10 @@ export class BlogpostsComponent  implements OnInit {
 
   getBlogPosts(): void {
     this.blogPostService.getBlogPostsSlowly().then(blogPosts => this.blogPosts = blogPosts);
+  }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedPost.id]);
   }
 }
 
