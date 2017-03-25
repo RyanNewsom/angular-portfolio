@@ -10,7 +10,9 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   providers: [BlogService],
   selector: 'blog-detail',
-  templateUrl: './blog-detail.component.html'
+  templateUrl: './blog-detail.component.html',
+  styleUrls: [ './blog-detail.component.css' ]
+
 })
 export class BlogDetailComponent implements OnInit{
   @Input() post: BlogPost;
