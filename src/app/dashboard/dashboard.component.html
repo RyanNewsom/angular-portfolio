@@ -1,0 +1,8 @@
+<h3>Top Blog posts</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let post of blogPosts" [routerLink]="['/detail', post.id]" class="col-1-4">
+    <div class="module post">
+      <h4>{{post.name}}</h4>
+    </div>
+  </div>
+</div>
